@@ -1,20 +1,33 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "variadic_functions.h"
 
 /**
- * print_numbers - prints numbers, followed by a new line
- * @separator: separator string
- * @n: number of arguments
- */
+  * print_numbers - ...
+  * @separator: ...
+  * @n: ...
+  *
+  * Return: ...
+  */
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
-	register unsigned int i;
-	va_list nl;
+	va_list args;
+	unsigned int i = 0;
 
-	va_start(nl, n);
-	for (i = 0; i < n; i++)
-		printf("%i%s", va_arg(nl, int), (separator && i != n - 1) ? separator : "");
-	va_end(nl);
+	if (n > 0)
+	{
+		va_start(args, n);
+
+		while (i < n)
+		{
+			printf("%d", va_arg(args, int));
+
+			if (i != n - 1  && separator != NULL)
+				printf("%s", separator);
+
+			i++;
+		}
+		va_end(args);
+	}
 	printf("\n");
-
-
 }
